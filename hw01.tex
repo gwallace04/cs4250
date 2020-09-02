@@ -8,7 +8,6 @@
 \usepackage{graphicx}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
-% \doublespacing
 \setlength{\headheight}{14pt}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -25,8 +24,8 @@
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \newcommand{\hwnumber}[1]{\medskip \noindent\textbf{#1.} \smallskip}
 \newcommand{\hwnumbersec}[3]{\medskip \noindent\textbf{#1.} Chapter #2 #3
-\newcommand{\ans}{\noindent\textbf{A:} }
 \newline\noindent\textbf{Q:}}
+\newcommand{\A}{\noindent\textbf{A:} }
 \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 \newcommand{\Alg}[1]{\medskip \noindent\textbf{ALGORITHM} \( #1 \)} 
 \newcommand{\To}{\textbf{ to }}
@@ -40,7 +39,7 @@
 Why is it useful for a programmer to have some background in language design,
 even though he or she may never actually design a programming language?
 
-\ans The reasons given in the book are: 
+\A The reasons given in the book are: 
 \begin{itemize}
 \item Increased capacity to express ideas
 \item Improved background for choosing appropriate languages
@@ -61,5 +60,31 @@ could very well be obsolete by tomorrow. This is less of a problem if (a) you
 have many other tools to use and (b) understand the fundamentals of language
 design and thus can pick up the new tools instead.  
 
+\hwnumbersec{2}{1}{RQ \#16}
+Why is readability important to writability?
+
+\A Writing requires reading, that is when writing a program, the programmer will
+have to read the program many times. In addition, a lot of software development
+today is focused on maintaining existing code rather than writing new code from
+scratch. If the programming language is highly readable, it will make writing
+and revising the code much easier.  
+
+\hwnumbersec{3}{1}{PS \#10}
+What are the arguments for writing efficient programs even though hardware is
+relatively inexpensive?
+
+\A There are two main arguments for efficient programs despite cheap hardware.
+The first is that while hardware can be inexpensive (and continues to become
+less expensive), it will never be free. Less efficient programs can be orders of
+magnitude slower and why take write code that is less efficient than necessary?
+For example, an implementation of a sorting algorithm using bubble sort will
+take much longer than using quick sort or merge sort for most data sets, and
+this difference grows larger as the size of the input grows. 
+
+The second argument is that while hardware is inexpensive, the programmer's time
+may not be. Efficient programs will run faster and will therefore take up less
+of the programmer's and the end user's time. Also, efficient code is more
+likely to be readable and extensible, which makes it easier for the programmer
+to maintain the code. 
 
 \end{document}
