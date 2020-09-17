@@ -28,7 +28,7 @@
 \newcommand{\A}{\noindent\textbf{A:} }
 \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 \newcommand{\Alg}[1]{\medskip \noindent\textbf{ALGORITHM} \( #1 \)} 
-\newcommand{\To}{$\rightarrow$}
+\newcommand{\To}{$\rightarrow$ }
 
 \begin{document}
 \begin{center}
@@ -98,5 +98,27 @@ Parse tree:
 \end{grammar}
 \end{minipage}
 
+Parse tree:
+
+\hwnumbersec{4}{11}
+
+The strings \texttt{baab} and \texttt{bbaab} are valid, but \texttt{bbbab} and
+\texttt{bbaaaaa} are not. 
+
+\hwnumbersec{5}{15}
+
+We have the following EBNF grammar:
+\medskip
+
+\begin{minipage}{0.8\textwidth}
+\centering
+\begin{grammar}
+	<program> \To \texttt{begin} <stmt_list> \texttt{end}\\
+	<stmt_list> \To <stmt> \{; <stmt_list>\}\\
+	<stmt> \To <var = <expression>\\
+	<var> \To A | B | C\\
+	<expression> \To <var> \{(+ | -) <var> \}
+\end{grammar}
+\end{minipage}
 
 \end{document}
