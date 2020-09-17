@@ -41,6 +41,7 @@ We have the following BNF:
 \medskip
 
 \begin{minipage}{0.8\textwidth}
+\centering
 \begin{grammar}
 	<assign> $\rightarrow$ <id> = <expr> \\
 	<id> \To A | B | C \\
@@ -49,5 +50,53 @@ We have the following BNF:
 	<factor> \To (<expr>) | <id>
 \end{grammar}
 \end{minipage}
+
+\hwnumbersec{2}{6(b)}
+
+Leftmost derivation:
+\medskip
+
+\begin{minipage}{0.8\textwidth}
+\centering
+\begin{grammar}
+	<assign> $\implies$\\
+	<id> = <expr> \\
+	$\implies$ B = <expr> \\
+	$\implies$ B = <id> * <expr> \\
+	$\implies$ B = C * <expr> \\
+	$\implies$ B = C * (<expr>)\\
+	$\implies$ B = C * (<id> * <expr>) \\
+	$\implies$ B = C * (A * <expr>)\\
+	$\implies$ B = C * (A * <id> + <expr>)\\
+	$\implies$ B = C * (A * C + <id>)\\
+	$\implies$ B = C * (A * C + B)
+\end{grammar}
+\end{minipage}
+
+Parse tree:
+
+
+\hwnumbersec{3}{7(a)}
+
+\begin{minipage}{0.8\textwidth}
+\centering
+\begin{grammar}
+	<assign> $\implies$\\
+	<id> = <expr> \\
+	$\implies$ A = <term> * <factor> \\
+	$\implies$ A = <term> * <id>\\
+	$\implies$ A = <term> * C\\
+	$\implies$ A = <factor> * C\\
+	$\implies$ A = (<expr>) * C\\
+	$\implies$ A = (<expr> + <term>) * C\\
+	$\implies$ A = (<expr> + <factor>) * C\\
+	$\implies$ A = (<expr> + <id>) * C\\
+	$\implies$ A = (<expr> + B) * C\\
+	$\implies$ A = (<term> + B) * C\\
+	$\implies$ A = (<factor> + B) * C\\
+	$\implies$ A = (A + B) * C
+\end{grammar}
+\end{minipage}
+
 
 \end{document}
