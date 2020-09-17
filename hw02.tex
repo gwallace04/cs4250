@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
+\usepackage{syntax}
 \setlength{\headheight}{14pt}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -23,16 +24,30 @@
 \newcommand{\inv}{^{-1}}
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \newcommand{\hwnumber}[1]{\medskip \noindent\textbf{#1.} \smallskip}
-\newcommand{\hwnumbersec}[3]{\medskip \noindent\textbf{#1.} Chapter #2 #3
-\newline\noindent\textbf{Q:}}
+\newcommand{\hwnumbersec}[2]{\medskip \noindent\textbf{#1.} Chapter 3 \##2 \smallskip}
 \newcommand{\A}{\noindent\textbf{A:} }
 \newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
 \newcommand{\Alg}[1]{\medskip \noindent\textbf{ALGORITHM} \( #1 \)} 
-\newcommand{\To}{\textbf{ to }}
+\newcommand{\To}{$\rightarrow$}
 
 \begin{document}
 \begin{center}
 	{\LARGE Homework 2}\\
 \end{center}
+
+\hwnumbersec{1}{3}
+
+We have the following BNF:
+\medskip
+
+\begin{minipage}{0.8\textwidth}
+\begin{grammar}
+	<assign> $\rightarrow$ <id> = <expr> \\
+	<id> \To A | B | C \\
+	<expr> \To <expr> * <term> | <term> \\
+	<term> \To <factor> + <term> | <factor> \\ 
+	<factor> \To (<expr>) | <id>
+\end{grammar}
+\end{minipage}
 
 \end{document}
