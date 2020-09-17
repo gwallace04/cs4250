@@ -121,4 +121,40 @@ We have the following EBNF grammar:
 \end{grammar}
 \end{minipage}
 
+\hwnumbersec{6}{17}
+
+We have the following BNF grammar:
+\medskip
+
+\begin{minipage}{0.8\textwidth}
+	\centering
+	S \To SbA $\vert$ A \\
+	A \To aA $\vert$ abA
+\end{minipage}
+
+\hwnumber{7}{23(a and b)}
+
+\textbf{(a)}
+
+\begin{align*}
+	&2 * (b - 1) - 1 > 0 \\
+	&2 * (b - 1) > 1 \\
+	&(b - 1) > \frac{1}{2}\\
+	&b > \frac{3}{2}
+\end{align*}
+
+So the weakest precondition is $b > \frac{3}{2}$
+\medskip
+
+\textbf{(b)}
+
+\begin{align*}
+	&\frac{c + 10}{3} > 6\\
+	&c + 10 > 18 \\
+	&c > 8
+\end{align*}
+
+So the weakest precondition is $c > 8$.
+
+
 \end{document}
