@@ -1,5 +1,6 @@
 #lang racket
 
+;Part 1
 (define pi 3.1416)
 (define (square x)
   (* x x))
@@ -19,7 +20,47 @@
    (if (= x 2) (*(/ 4 3) pi (cube r)) #f))
   )
 
+;Part 2
+(define (length a_list)
+  (cond
+    ((empty? a_list) 0)
+    (else (+ 1 (length (cdr a_list)))))
+  )
 
+(define (rem_second a_list)
+  (cond
+    ((<= (length a_list) 1) '())
+    (else (cons (car a_list)(cddr a_list)))
+  ))
+
+;Part 3
+(define (membership atm a_list)
+  (cond
+       ((null? a_list) #f)
+       ((eq? atm (car a_list)) #t)
+       (else (membership atm (cdr a_list)))
+ ))
+
+;This function does not preserve the order, but sets are not necessarily ordered
+(define (my_union lst1 lst2)
+  (cond ((null? lst2) lst1)
+        ((membership (car lst2) lst1)
+         (my_union lst1 (cdr lst2)))
+        (else (my_union (cons (car lst2) lst1) (cdr lst2))))
+  )
+
+;Part 4
+(define (my_delete a_list atm)
+  (cond ((null? a_list) '())
+        ((list? (car a_list)) (cons (my_delete (car a_list) atm) (my_delete (cdr a_list) atm)))
+        ((equal? atm (car a_list)) (my_delete (cdr a_list) atm))
+        (else (cons (car a_list) (my_delete (cdr a_list) atm))))
+  )
+
+(my_delete '(1 (2 3 4 (3 3 3 5)) 3 6) 3)
+;(pair? '(2 3 4 5))
+
+#|
 (my_calc1 1 2)
 (my_calc1 2 2)
 (my_calc1 3 2)
@@ -27,4 +68,10 @@
 (my_calc2 2 2)
 (my_calc2 3 2)
 
+(rem_second '())
+(rem_second '(1))
+(rem_second '(1 2 3))
+
+(my_union '(1 2) '(1 2 4))
+|#
      
