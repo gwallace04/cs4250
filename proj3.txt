@@ -1,4 +1,4 @@
-**********CODE**********
+/**********PART 1**********/
 /*facts*/
 male(pete).
 male(mark).
@@ -48,36 +48,18 @@ grandparent_of(X, Y) :- parent_of(X, Z), parent_of(Z, Y).
 ?- brother_of(mark, anne).
 */
 
-**********OUTPUT**********
-(a)
-true
 
-(b)
-false
+/**********PART 2**********/
+mymax([Max], Max).
+mymax([Head | Tail], Max) :-
+  mymax(Tail, X),
+  /*If statement from: https://stackoverflow.com/a/6314926*/
+  ( Head > X -> Max = Head ; Max = X ).
 
-(c)
-X = matt
-
-(d)
-X = mark
-X = anne
-
-(e)
-X = john
-X = frank
-
-(f)
-X = anne
-
-(g)
-false
-
-(h)
-false
-
-(i)
-X = anne
-
-(j)
-true
-
+/**********PART 3**********/
+myunion([], [], []).
+myunion(List, [], List).
+myunion(List1, [Head2 | Tail2], [Head2 | Output]) :-
+    not(member(Head2, List1)), myunion(List1, Tail2, Output).
+myunion(List1, [Head2 | Tail2], Output) :-
+    member(Head2, List1), myunion(List1, Tail2, Output).
