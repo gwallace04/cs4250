@@ -40,12 +40,29 @@ class Book(Product):
                 self.author))
         print(msg)
 
+class Movie(Product):
+    def __init__(self, name, price, discountPercent, year):
+        super().__init__(name, price, discountPercent)
+        self.year = year
+
+    def printDescription(self):
+        msg = (
+            'This is a MOVIE with the following attributes:\n'
+            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Year: {}'.format(
+                self.name, 
+                self.price,
+                self.discountPercent,
+                self.year))
+        print(msg)
+
 def main():
     product = Product('product', 7, 3)
     print(product.getDiscountAmount())
     product.printDescription()
     a_book = Book('White Noise', 10, 5, 'Don Delillo')
     a_book.printDescription()
+    a_movie = Movie('Pulp Fiction', 15, 10, '1994')
+    a_movie.printDescription()
 
 if __name__ == "__main__":
     main()
