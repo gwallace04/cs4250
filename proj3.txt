@@ -1,0 +1,65 @@
+/**********PART 1**********/
+/*facts*/
+male(pete).
+male(mark).
+male(tom).
+male(john).
+male(frank).
+male(henry).
+male(matt).
+male(todd).
+female(anne).
+female(lilly).
+female(kate).
+female(alice).
+female(jenny).
+
+parent_of(pete, mark).
+parent_of(pete, tom).
+parent_of(pete, anne).
+parent_of(mark, lilly).
+parent_of(mark, john).
+parent_of(mark, frank).
+parent_of(tom, kate).
+parent_of(anne, alice).
+parent_of(anne, matt).
+parent_of(alice, henry).
+parent_of(matt, jenny).
+parent_of(matt, todd).
+
+/*rules*/
+sibling(X, Y) :- parent_of(Z, X), parent_of(Z, Y), not(X = Y).
+sister_of(X, Y) :- female(X), sibling(X, Y).
+brother_of(X, Y) :- male(X), sibling(X, Y).
+mother_of(X, Y) :- female(X), parent_of(X, Y).
+father_of(X, Y) :- male(X), parent_of(X, Y).
+grandparent_of(X, Y) :- parent_of(X, Z), parent_of(Z, Y).
+
+/** <examples>
+?- parent_of(pete, mark).
+?- parent_of(anne, jenny).
+?- father_of(X, todd).
+?- sibling(X, tom).
+?- brother_of(X, lilly).
+?- grandparent_of(X, henry).
+?- sister_of(X, alice).
+?- brother_of(frank, kate).
+?- mother_of(X, matt).
+?- brother_of(mark, anne).
+*/
+
+
+/**********PART 2**********/
+mymax([Max], Max).
+mymax([Head | Tail], Max) :-
+  mymax(Tail, X),
+  /*If statement from: https://stackoverflow.com/a/6314926*/
+  ( Head > X -> Max = Head ; Max = X ).
+
+/**********PART 3**********/
+myunion([], [], []).
+myunion(List, [], List).
+myunion(List1, [Head2 | Tail2], [Head2 | Output]) :-
+    not(member(Head2, List1)), myunion(List1, Tail2, Output).
+myunion(List1, [Head2 | Tail2], Output) :-
+    member(Head2, List1), myunion(List1, Tail2, Output).
