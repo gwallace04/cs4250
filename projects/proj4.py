@@ -11,18 +11,20 @@ class Product:
         self.discountPercent  = discountPercent
 
     def getDiscountPrice(self):
-        return self.discountPercent
+        return round(self.price - self.getDiscountAmount(), 2)
 
     def getDiscountAmount(self):
-        return round(self.price * (1 - self.discountPercent / 100), 2)
+        return round(self.price * (self.discountPercent / 100), 2)
 
     def printDescription(self):
         msg = (
             'This is a PRODUCT with the following attributes:\n'
-            ' Name: {}\n Price: ${}\n Discount Percent: {}% '.format(
+            ' Name: {}\n Price: ${}\n Discount Percent: {}% \n'
+            'The discount price is ${}\n'.format(
                 self.name, 
                 self.price,
-                self.discountPercent))
+                self.discountPercent,
+                self.getDiscountPrice()))
         print(msg)
 
 class Book(Product):
@@ -33,11 +35,13 @@ class Book(Product):
     def printDescription(self):
         msg = (
             'This is a BOOK with the following attributes:\n'
-            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Author: {}'.format(
+            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Author: {}\n'
+            'The discount price is ${}\n'.format(
                 self.name, 
                 self.price,
                 self.discountPercent,
-                self.author))
+                self.author,
+                self.getDiscountPrice()))
         print(msg)
 
 class Movie(Product):
@@ -48,21 +52,37 @@ class Movie(Product):
     def printDescription(self):
         msg = (
             'This is a MOVIE with the following attributes:\n'
-            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Year: {}'.format(
+            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Year: {}\n'
+            'The discount price is ${}\n'.format(
                 self.name, 
                 self.price,
                 self.discountPercent,
-                self.year))
+                self.year,
+                self.getDiscountPrice()))
         print(msg)
 
 def main():
-    product = Product('product', 7, 3)
-    print(product.getDiscountAmount())
+    product = Product('A generic product', 10, 20)
+    book = Book('Libra', 23, 5, 'Don DeLillo')
+    movie = Movie('Pulp Fiction', 25, 50, '1994')
     product.printDescription()
-    a_book = Book('White Noise', 10, 5, 'Don Delillo')
-    a_book.printDescription()
-    a_movie = Movie('Pulp Fiction', 15, 10, '1994')
-    a_movie.printDescription()
+    book.printDescription()
+    movie.printDescription()
+
+    #Verify inheritance
+    print(isinstance(product, Product))
+    print(isinstance(product, Book))
+    print(isinstance(product, Movie))
+    print(isinstance(book, Product))
+    print(isinstance(book, Book))
+    print(isinstance(movie, Product))
+    print(isinstance(movie, Movie))
+    print()
+
+    print(issubclass(Book, Product))
+    print(issubclass(Movie, Product))
+
+
 
 if __name__ == "__main__":
     main()
