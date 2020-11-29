@@ -9,6 +9,7 @@
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{syntax}
+\usepackage{adjustbox}
 \setlength{\headheight}{14pt}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -30,11 +31,35 @@
 \newcommand{\Alg}[1]{\medskip \noindent\textbf{ALGORITHM} \( #1 \)} 
 \newcommand{\To}{$\rightarrow$ }
 
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
 \begin{document}
 \begin{center}
 	{\LARGE Homework 3}\\
 \end{center}
 
+\hwnumber{1}
 
+\begin{center}
+\begin{adjustbox}{width={\textwidth},keepaspectratio}
+\begin{tabular}{c | l l}
+	& Static & Stack dynamic \\
+	\hline
+	Advantages & \tabitem Quick to allocate/deallocate & \tabitem Support for recursion\\
+		   & \tabitem Subprograms can be history sensitive & \tabitem Storage is shared among some subprograms\\
+	Disadvantages & \tabitem Does not support recursion & \tabitem Takes longer to allocate/deallocate \\
+		      & \tabitem Subprograms cannot share storage & \tabitem Subprograms cannot be history sensitive \\
+\end{tabular}
+\end{adjustbox}
+\end{center}
+
+\hwnumber{2}
+
+When calling subprograms as parameters and the language in use allows nested
+subprograms, it is ambiguous as to which referencing environment is used to
+execute the passed subprogram. One approach is \textbf{shallow binding} where
+the environment of the call statement that executes the passed subprogram is
+used. Another approach is \textbf{deep binding} where the environment of the
+definition of the passed subprogram is used. 
 
 \end{document}
