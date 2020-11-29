@@ -1,0 +1,88 @@
+"""
+program: proj4.py
+author: Gabriel Wallace
+description: This is a simple program to demonstrate inheritance
+"""
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name 
+        self.price = price
+        self.discountPercent  = discountPercent
+
+    def getDiscountPrice(self):
+        return round(self.price - self.getDiscountAmount(), 2)
+
+    def getDiscountAmount(self):
+        return round(self.price * (self.discountPercent / 100), 2)
+
+    def printDescription(self):
+        msg = (
+            'This is a PRODUCT with the following attributes:\n'
+            ' Name: {}\n Price: ${}\n Discount Percent: {}% \n'
+            'The discount price is ${}\n'.format(
+                self.name, 
+                self.price,
+                self.discountPercent,
+                self.getDiscountPrice()))
+        print(msg)
+
+class Book(Product):
+    def __init__(self, name, price, discountPercent, author):
+        super().__init__(name, price, discountPercent)
+        self.author = author
+
+    def printDescription(self):
+        msg = (
+            'This is a BOOK with the following attributes:\n'
+            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Author: {}\n'
+            'The discount price is ${}\n'.format(
+                self.name, 
+                self.price,
+                self.discountPercent,
+                self.author,
+                self.getDiscountPrice()))
+        print(msg)
+
+class Movie(Product):
+    def __init__(self, name, price, discountPercent, year):
+        super().__init__(name, price, discountPercent)
+        self.year = year
+
+    def printDescription(self):
+        msg = (
+            'This is a MOVIE with the following attributes:\n'
+            ' Name: {}\n Price: ${}\n Discount Percent: {}%\n Year: {}\n'
+            'The discount price is ${}\n'.format(
+                self.name, 
+                self.price,
+                self.discountPercent,
+                self.year,
+                self.getDiscountPrice()))
+        print(msg)
+
+def main():
+    product = Product('A generic product', 10, 20)
+    book = Book('Libra', 23, 5, 'Don DeLillo')
+    movie = Movie('Pulp Fiction', 25, 50, '1994')
+    product.printDescription()
+    book.printDescription()
+    movie.printDescription()
+
+    #Verify inheritance
+    print(isinstance(product, Product))
+    print(isinstance(product, Book))
+    print(isinstance(product, Movie))
+    print(isinstance(book, Product))
+    print(isinstance(book, Book))
+    print(isinstance(movie, Product))
+    print(isinstance(movie, Movie))
+    print()
+
+    print(issubclass(Book, Product))
+    print(issubclass(Movie, Product))
+
+
+
+if __name__ == "__main__":
+    main()
